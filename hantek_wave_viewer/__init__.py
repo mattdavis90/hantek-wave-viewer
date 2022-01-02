@@ -14,7 +14,7 @@ from .parser import conversions, utils
 def main(filename):
     try:
         wave = Hantek.from_file(filename)
-    except KaitaiStructError as exc:
+    except (KaitaiStructError, EOFError) as exc:
         raise click.ClickException(str(exc))
 
     # Build the data array for each channel
@@ -24,10 +24,13 @@ def main(filename):
     data4 = np.array(wave.data4)
 
     # Time axis we just use channel 1 because the info. is the same for every channel
+    # Note: won't work if Ch1 is off and Ch2 is on.
+    # TODO: Look at all 4 channels to determine the correct value.
     timebase = conversions.TIMEBASE[wave.header.channel1.timebase]
     timebase_str = utils.format_number(timebase, "s")
     seconds_per_sample = 1 / wave.header.channel1.samples_per_second
-    time = np.arange(0, wave.header.channel1.sampling_depth * seconds_per_sample, seconds_per_sample)
+    time = np.arange(0, float(wave.header.channel1.sample_count))
+    time *= seconds_per_sample
 
     # Darkmode to simulate oscilloscope
     plt.style.use('dark_background')
