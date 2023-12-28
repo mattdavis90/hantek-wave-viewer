@@ -1,11 +1,10 @@
 # This is a generated file! Please edit source .ksy file and use kaitai-struct-compiler to rebuild
 
-from pkg_resources import parse_version
 import kaitaistruct
 from kaitaistruct import KaitaiStruct, KaitaiStream, BytesIO
 
 
-if parse_version(kaitaistruct.__version__) < parse_version('0.9'):
+if getattr(kaitaistruct, 'API_VERSION', (0, 9)) < (0, 9):
     raise Exception("Incompatible Kaitai Struct Python API: 0.9 or later is required, but you have %s" % (kaitaistruct.__version__))
 
 class Hantek(KaitaiStruct):
@@ -17,21 +16,21 @@ class Hantek(KaitaiStruct):
 
     def _read(self):
         self.header = Hantek.Header(self._io, self, self._root)
-        self.data1 = [None] * (self.header.channel1.sample_count)
+        self.data1 = []
         for i in range(self.header.channel1.sample_count):
-            self.data1[i] = self._io.read_s2le()
+            self.data1.append(self._io.read_s2le())
 
-        self.data2 = [None] * (self.header.channel2.sample_count)
+        self.data2 = []
         for i in range(self.header.channel2.sample_count):
-            self.data2[i] = self._io.read_s2le()
+            self.data2.append(self._io.read_s2le())
 
-        self.data3 = [None] * (self.header.channel3.sample_count)
+        self.data3 = []
         for i in range(self.header.channel3.sample_count):
-            self.data3[i] = self._io.read_s2le()
+            self.data3.append(self._io.read_s2le())
 
-        self.data4 = [None] * (self.header.channel4.sample_count)
+        self.data4 = []
         for i in range(self.header.channel4.sample_count):
-            self.data4[i] = self._io.read_s2le()
+            self.data4.append(self._io.read_s2le())
 
         self.footer = Hantek.Footer(self._io, self, self._root)
 
@@ -52,9 +51,9 @@ class Hantek(KaitaiStruct):
             self.channel2 = Hantek.Channel(self._io, self, self._root)
             self.channel3 = Hantek.Channel(self._io, self, self._root)
             self.channel4 = Hantek.Channel(self._io, self, self._root)
-            self.thumbnail = [None] * (16)
+            self.thumbnail = []
             for i in range(16):
-                self.thumbnail[i] = self._io.read_s1()
+                self.thumbnail.append(self._io.read_s1())
 
 
 
