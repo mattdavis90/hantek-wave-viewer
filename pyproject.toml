@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hantek_wave_viewer"
+authors = [
+    {name = "Matt Davis"},
+]
+description = "Viewer for Hantek DSO lwf files"
+readme = "README.md"
+license = {text ="MIT"}
+classifiers = [
+    "Programming Language :: Python :: 3"
+]
+dependencies = [
+    "click == 8.1.7",
+    "kaitaistruct == 0.10",
+    "matplotlib == 3.8.2",
+]
+dynamic = ["version"]
+
+[tool.setuptools]
+packages = ["hantek_wave_viewer"]
+
+[tool.setuptools.dynamic]
+version = {attr = "hantek_wave_viewer._version.VERSION"}
+
+[tool.isort]
+profile = "black"
+
+[tool.pylint.format]
+max-line-length = "88"
+
+[tool.mypy]
+check_untyped_defs = true
+
+[tool.black]
+extend-exclude = "parser/hantek.py"

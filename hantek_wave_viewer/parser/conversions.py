@@ -47,7 +47,7 @@ VOLTS_PER_DIV = {
     4: 10e-3,
     3: 5e-3,
     2: 2e-3,
-    1: 1e-3,    # Not available on DSO2C10
+    1: 1e-3,  # Not available on DSO2C10
     0: 500e-6,  # Not available on DSO2C10
 }
 

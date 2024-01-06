@@ -5,13 +5,18 @@ import numpy as np
 from kaitaistruct import KaitaiStructError
 from matplotlib.ticker import MultipleLocator, NullFormatter
 
-from .parser.hantek import Hantek
 from .parser import conversions, utils
+from .parser.hantek import Hantek
+from ._version import VERSION
 
 
-@click.argument("filename", type=click.Path(exists=True, file_okay=True, dir_okay=False, readable=True))
+@click.argument(
+    "filename",
+    type=click.Path(exists=True, file_okay=True, dir_okay=False, readable=True),
+)
 @click.command()
 def main(filename):
+    click.echo(f"Hantek Wave Viewer: v{VERSION}")
     try:
         wave = Hantek.from_file(filename)
     except (KaitaiStructError, EOFError) as exc:
@@ -33,7 +38,7 @@ def main(filename):
     time *= seconds_per_sample
 
     # Darkmode to simulate oscilloscope
-    plt.style.use('dark_background')
+    plt.style.use("dark_background")
     fig, ax = plt.subplots()
 
     # Setup the graph like an oscilloscope graticule
@@ -47,39 +52,73 @@ def main(filename):
     ax.minorticks_on()
 
     # Plot the channels
-    ytrans = transforms.blended_transform_factory(ax.get_yticklabels()[0].get_transform(), ax.transData)
+    ytrans = transforms.blended_transform_factory(
+        ax.get_yticklabels()[0].get_transform(), ax.transData
+    )
     if len(data1) > 0:
         vpd = conversions.VOLTS_PER_DIV[wave.header.channel1.volts_per_div]
-        vpd_str = utils.format_number(vpd * (10 ** wave.header.channel1.mode), "V")
+        vpd_str = utils.format_number(vpd * (10**wave.header.channel1.mode), "V")
         col = conversions.CHANNEL_COLOUR[0]
 
         ax.plot(time, data1, color=col, label=f"Ch1: {vpd_str}")
         ax.axhline(y=wave.header.channel1.offset, color=col, lw=0.8, ls="-")
-        ax.text(0, wave.header.channel1.offset, "1>", color=col, transform=ytrans, ha="right", va="center")
+        ax.text(
+            0,
+            wave.header.channel1.offset,
+            "1>",
+            color=col,
+            transform=ytrans,
+            ha="right",
+            va="center",
+        )
     if len(data2) > 0:
         vpd = conversions.VOLTS_PER_DIV[wave.header.channel2.volts_per_div]
-        vpd_str = utils.format_number(vpd * (10 ** wave.header.channel1.mode), "V")
+        vpd_str = utils.format_number(vpd * (10**wave.header.channel1.mode), "V")
         col = conversions.CHANNEL_COLOUR[1]
 
         ax.plot(time, data2, color=col, label=f"Ch2: {vpd_str}")
         ax.axhline(y=wave.header.channel2.offset, color=col, lw=0.8, ls="-")
-        ax.text(0, wave.header.channel2.offset, "2>", color=col, transform=ytrans, ha="right", va="center")
+        ax.text(
+            0,
+            wave.header.channel2.offset,
+            "2>",
+            color=col,
+            transform=ytrans,
+            ha="right",
+            va="center",
+        )
     if len(data3) > 0:
         vpd = conversions.VOLTS_PER_DIV[wave.header.channel3.volts_per_div]
-        vpd_str = utils.format_number(vpd * (10 ** wave.header.channel1.mode), "V")
+        vpd_str = utils.format_number(vpd * (10**wave.header.channel1.mode), "V")
         col = conversions.CHANNEL_COLOUR[2]
 
         ax.plot(time, data3, color=col, label=f"Ch3: {vpd_str}")
         ax.axhline(y=wave.header.channel3.offset, color=col, lw=0.8, ls="-")
-        ax.text(0, wave.header.channel3.offset, "3>", color=col, transform=ytrans, ha="right", va="center")
+        ax.text(
+            0,
+            wave.header.channel3.offset,
+            "3>",
+            color=col,
+            transform=ytrans,
+            ha="right",
+            va="center",
+        )
     if len(data4) > 0:
         vpd = conversions.VOLTS_PER_DIV[wave.header.channel4.volts_per_div]
-        vpd_str = utils.format_number(vpd * (10 ** wave.header.channel1.mode), "V")
+        vpd_str = utils.format_number(vpd * (10**wave.header.channel1.mode), "V")
         col = conversions.CHANNEL_COLOUR[3]
 
         ax.plot(time, data4, color=col, label=f"Ch4: {vpd_str}")
         ax.axhline(y=wave.header.channel4.offset, color=col, lw=0.8, ls="-")
-        ax.text(0, wave.header.channel4.offset, "4>", color=col, transform=ytrans, ha="right", va="center")
+        ax.text(
+            0,
+            wave.header.channel4.offset,
+            "4>",
+            color=col,
+            transform=ytrans,
+            ha="right",
+            va="center",
+        )
 
     # Trigger line
     trigger_level = wave.header.channel1.trigger_level
