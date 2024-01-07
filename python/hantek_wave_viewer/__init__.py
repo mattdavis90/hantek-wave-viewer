@@ -34,13 +34,20 @@ def main():
 def info(filename: str):
     wave = load_wave(filename)
 
-    click.secho("Common Header:", fg="magenta")
+    click.secho("Common:", fg="magenta")
     click.echo(f"\tVersion: {wave.header.version}")
+    utils.print_channel_common(wave.header.channel1)
 
     utils.print_channel(1, wave.header.channel1)
     utils.print_channel(2, wave.header.channel2)
     utils.print_channel(3, wave.header.channel3)
     utils.print_channel(4, wave.header.channel4)
+
+    click.secho("Data:", fg="magenta")
+    click.echo(f"\tChannel 1: {len(wave.data1)}")
+    click.echo(f"\tChannel 2: {len(wave.data2)}")
+    click.echo(f"\tChannel 3: {len(wave.data3)}")
+    click.echo(f"\tChannel 4: {len(wave.data4)}")
 
 
 @filename_arg
