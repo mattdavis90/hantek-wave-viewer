@@ -2,6 +2,7 @@ import unittest
 
 from hantek_wave_viewer.parser import utils
 
+
 class UtilsTestCase(unittest.TestCase):
     def test_format_small(self):
         self.assertEqual(utils.format_small("100"), "100")

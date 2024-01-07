@@ -65,7 +65,7 @@ class Hantek(KaitaiStruct):
             self._read()
 
         def _read(self):
-            self._unnamed0 = self._io.read_u2le()
+            self.acquisition_mode = self._io.read_u2le()
             self.enabled = self._io.read_u1()
             self.timebase = self._io.read_u1()
             self.sampling_depth = self._io.read_u4le()

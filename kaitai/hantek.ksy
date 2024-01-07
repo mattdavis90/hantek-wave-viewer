@@ -49,7 +49,8 @@ types:
         repeat-expr: 16
   channel:
     seq:
-      - type: u2
+      - id: acquisition_mode
+        type: u2
       - id: enabled
         type: u1
       - id: timebase

@@ -51,6 +51,30 @@ VOLTS_PER_DIV = {
     0: 500e-6,  # Not available on DSO2C10
 }
 
+TRIGGER_NAME = [
+    "Edge",
+    "Pulse",
+    "Video",
+    "Slope",
+    "Overtime",
+    "Window",
+    "Pattern",
+    "Interval",
+    "Under Amp",
+    "UART",
+    "LIN",
+    "CAN",
+    "SPI",
+    "IIC",
+]
+
+ACQUISITION_MODE = [
+    "Normal",
+    "Average",
+    "Peak",
+    "HR",
+]
+
 CHANNEL_COLOUR = {
     0: "#f8f601",
     1: "#00f401",

@@ -5,22 +5,48 @@ import numpy as np
 from kaitaistruct import KaitaiStructError
 from matplotlib.ticker import MultipleLocator, NullFormatter
 
+from ._version import VERSION
 from .parser import conversions, utils
 from .parser.hantek import Hantek
-from ._version import VERSION
 
-
-@click.argument(
+filename_arg = click.argument(
     "filename",
     type=click.Path(exists=True, file_okay=True, dir_okay=False, readable=True),
 )
-@click.command()
-def main(filename):
-    click.echo(f"Hantek Wave Viewer: v{VERSION}")
+
+
+def load_wave(filename: str) -> Hantek:
     try:
-        wave = Hantek.from_file(filename)
+        return Hantek.from_file(filename)
     except (KaitaiStructError, EOFError) as exc:
         raise click.ClickException(str(exc))
+
+
+@click.group()
+@click.version_option(VERSION)
+def main():
+    click.secho(f"Hantek Wave Viewer: v{VERSION}", fg="green", nl=False)
+    click.echo("", nl=True)
+
+
+@filename_arg
+@main.command()
+def info(filename: str):
+    wave = load_wave(filename)
+
+    click.secho("Common Header:", fg="magenta")
+    click.echo(f"\tVersion: {wave.header.version}")
+
+    utils.print_channel(1, wave.header.channel1)
+    utils.print_channel(2, wave.header.channel2)
+    utils.print_channel(3, wave.header.channel3)
+    utils.print_channel(4, wave.header.channel4)
+
+
+@filename_arg
+@main.command()
+def view(filename: str):
+    wave = load_wave(filename)
 
     # Build the data array for each channel
     data1 = np.array(wave.data1)
