@@ -57,22 +57,22 @@ void VCD::dump(std::optional<float> ch1, std::optional<float> ch2,
         if (ch1)
             out << fmt::format("r{:.16g} #\n", *ch1);
         if (ch2)
-            out << fmt::format("r{:.16g} #\n", *ch2);
+            out << fmt::format("r{:.16g} $\n", *ch2);
         if (ch3)
-            out << fmt::format("r{:.16g} #\n", *ch3);
+            out << fmt::format("r{:.16g} %\n", *ch3);
         if (ch4)
-            out << fmt::format("r{:.16g} #\n", *ch4);
+            out << fmt::format("r{:.16g} &\n", *ch4);
         out << "$end\n";
     } else {
         out << fmt::format("#{:.16g}\n", time);
         if (ch1)
             out << fmt::format("r{:.16g} #\n", *ch1);
         if (ch2)
-            out << fmt::format("r{:.16g} #\n", *ch2);
+            out << fmt::format("r{:.16g} $\n", *ch2);
         if (ch3)
-            out << fmt::format("r{:.16g} #\n", *ch3);
+            out << fmt::format("r{:.16g} %\n", *ch3);
         if (ch4)
-            out << fmt::format("r{:.16g} #\n", *ch4);
+            out << fmt::format("r{:.16g} &\n", *ch4);
     }
     time += step;
 }
