@@ -20,6 +20,9 @@ dependencies = [
 ]
 dynamic = ["version"]
 
+[project.scripts]
+hantek_wave_viewer = "hantek_wave_viewer:main"
+
 [tool.setuptools]
 packages = ["hantek_wave_viewer"]
 
