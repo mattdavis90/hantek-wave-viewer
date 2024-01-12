@@ -118,7 +118,7 @@ std::optional<double> Hantek::get_data(
 {
     if (ch->enabled()) {
         // Hantek has 25 ticks per division
-        auto volts_per_div = VOLTS_PER_DIV[ch->volts_per_div()] / 25.0f;
+        auto volts_per_div = (VOLTS_PER_DIV[ch->volts_per_div()] * pow(10, ch->mode())) / 25.0f;
 
         if (idx < data->size()) {
             return std::optional(((*data)[idx] - ch->offset()) * volts_per_div);
