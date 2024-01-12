@@ -14,6 +14,5 @@ public:
 
 private:
     std::ofstream out;
-    float step = 0.0;
-    float time = 0.0;
+    int time = 0;
 };
