@@ -49,8 +49,8 @@ VCD::VCD(std::string filename, double timebase)
 
 VCD::~VCD() { out.close(); }
 
-void VCD::dump(std::optional<float> ch1, std::optional<float> ch2,
-    std::optional<float> ch3, std::optional<float> ch4)
+void VCD::dump(std::optional<double> ch1, std::optional<double> ch2,
+    std::optional<double> ch3, std::optional<double> ch4)
 {
     if (time == 0.0) {
         out << "$dumpvars\n";

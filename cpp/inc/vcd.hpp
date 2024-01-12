@@ -9,8 +9,8 @@ public:
     VCD(std::string filename, double timebase);
     ~VCD();
 
-    void dump(std::optional<float> ch1, std::optional<float> ch2,
-        std::optional<float> ch3, std::optional<float> ch4);
+    void dump(std::optional<double> ch1, std::optional<double> ch2,
+        std::optional<double> ch3, std::optional<double> ch4);
 
 private:
     std::ofstream out;
