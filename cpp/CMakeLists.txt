@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
 
 # Main executable
-project(HantekWavefile VERSION 0.1.0)
+project(HantekWavefile VERSION 0.1.1)
 
 set(BINARY "hantek")
 set(SRC "${PROJECT_SOURCE_DIR}/src")
