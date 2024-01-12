@@ -8,9 +8,6 @@
 #include <optional>
 #include <tuple>
 
-#include <fmt/core.h>
-#include <rang.hpp>
-
 class Hantek {
 public:
     Hantek(const std::string filename);

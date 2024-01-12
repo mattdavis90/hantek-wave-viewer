@@ -3,6 +3,9 @@
 
 #include <math.h>
 
+#include <fmt/core.h>
+#include <rang.hpp>
+
 Hantek::Hantek(const std::string filename)
 {
     std::ifstream fs(filename, std::ios::binary);

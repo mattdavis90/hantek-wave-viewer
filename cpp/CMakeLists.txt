@@ -42,7 +42,7 @@ CPMAddPackage("gh:agauniyal/rang@3.2")
 CPMAddPackage("gh:fmtlib/fmt#10.2.1")
 target_link_libraries(${BINARY} kaitai_struct_cpp_stl_runtime argparse rang fmt)
 
-# Store the version number in "inc/version.cpp"
+# Store the version number in "src/version.cpp"
 set(VERSION "const char* VERSION=\"${CMAKE_PROJECT_VERSION}\";")
 set(VERSION_FILE "${SRC}/version.cpp")
 if(EXISTS ${VERSION_FILE})
