@@ -1,5 +1,13 @@
 # Wavefile Samples
 
+To determine the header structure I made some sample captures on a DSO2C10 and observed differences in the header using the [Kaitai Web IDE](https://ide.kaitai.io).
+
+From this it can be seen that there is a consistent 348 Bytes header. Further inspection of the larger files shows that it is actually 344 Bytes header with a 4 Byte footer (constant 0x78563412 - which implies the file is little-endian). Also of note is that the scope was set to 4000 samples and the file grows by 8000 Bytes per channel, indicating `16-bit signed integer` as the data type.
+
+I used [Kaitai Struct](https://kaitai.io) to analyse the files and mark the various bytes in the header that aligned to the parameters that I had changes. The `ksy` file is available in the [repo](https://github.com/mattdavis90/hantek-wave-viewer/blob/master/hantek_wave_viewer/kaitai/hantek.ksy). From this file Kaitai generates Python and C++ bindings.
+
+### Included Sample Files
+
 filename | Ch1 VpD, offset | Ch2 VpD, Offset |  Timebase  | Trigger | Comments                 | filesize
 ---------|-----------------|-----------------|------------|---------|--------------------------|----------
  26_0    |      Off, 1V,0V |       Off,1V,0V |   2m,   0  |  Ch1,0V |                          |    348
@@ -34,6 +42,3 @@ filename | Ch1 VpD, offset | Ch2 VpD, Offset |  Timebase  | Trigger | Comments  
 30_6     |       On, 2V,0V |       Off,2V,0V | 200u,   0  |  Ch1,2V | Either edge - No change  |   8348
 30_7     |       On, 2V,0V |       Off,2V,0V | 200u,   0  |  Ch1,2V | Normal mode - No change  |   8348
 30_8     |       On, 2V,0V |       Off,2V,0V | 200u,   0  |  Ch1,2V | 16ns holdoff - No change |   8348
-
-From this it can be seen that there is a consistent 348 Bytes. This looks to be a header. Further inspection of the larger files shows that it is actually 344 Bytes header with a 4 Byte footer (constant 0x78563412 - which looks to little-endian). Also of note is that the scope is set to 4000 samples and the file grows by 8000 Bytes per channel, indicating `16-bit signed integer` as the data type.
-I used [Kaitai Struct](https://kaitai.io) to analyse the files and mark the various bytes in the header that aligned to the parameters that I had changes. The `ksy` file is available in the [repo](https://github.com/mattdavis90/hantek-wave-viewer/blob/master/hantek_wave_viewer/parser/hantek.ksy). From this file Kaitai generates a Python parser and I can build the oscilloscope viewer using matplotlib.
