@@ -25,8 +25,7 @@ def load_wave(filename: str) -> Hantek:
 @click.group()
 @click.version_option(VERSION)
 def main():
-    click.secho(f"Hantek Wave Viewer: v{VERSION}", fg="green", nl=False)
-    click.echo("", nl=True)
+    click.secho(f"Hantek Wave Viewer: v{VERSION}", fg="green")
 
 
 @filename_arg

@@ -1,0 +1,4 @@
+---
+BasedOnStyle: Webkit
+ColumnLimit: 88
+AlignConsecutiveAssignments: true
