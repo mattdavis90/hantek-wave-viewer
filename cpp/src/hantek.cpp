@@ -104,8 +104,7 @@ Hantek::next()
 
         idx++;
 
-        return std::tuple(std::optional(ch1), std::optional(ch2), std::optional(ch3),
-            std::optional(ch4));
+        return std::tuple(ch1, ch2, ch3, ch4);
     } else {
         throw std::runtime_error("Out of data");
     }
