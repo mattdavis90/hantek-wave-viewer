@@ -1,10 +1,11 @@
 #pragma once
 
-// This is a generated file! Please edit source .ksy file and use kaitai-struct-compiler to rebuild
+// This is a generated file! Please edit source .ksy file and use kaitai-struct-compiler
+// to rebuild
 
 #include "kaitai/kaitaistruct.h"
-#include <stdint.h>
 #include <memory>
+#include <stdint.h>
 #include <vector>
 
 #if KAITAI_STRUCT_VERSION < 9000L
@@ -18,7 +19,8 @@ public:
     class channel_t;
     class footer_t;
 
-    hantek_t(kaitai::kstream* p__io, kaitai::kstruct* p__parent = nullptr, hantek_t* p__root = nullptr);
+    hantek_t(kaitai::kstream* p__io, kaitai::kstruct* p__parent = nullptr,
+        hantek_t* p__root = nullptr);
 
 private:
     void _read();
@@ -30,8 +32,8 @@ public:
     class header_t : public kaitai::kstruct {
 
     public:
-
-        header_t(kaitai::kstream* p__io, hantek_t* p__parent = nullptr, hantek_t* p__root = nullptr);
+        header_t(kaitai::kstream* p__io, hantek_t* p__parent = nullptr,
+            hantek_t* p__root = nullptr);
 
     private:
         void _read();
@@ -68,8 +70,8 @@ public:
     class channel_t : public kaitai::kstruct {
 
     public:
-
-        channel_t(kaitai::kstream* p__io, hantek_t::header_t* p__parent = nullptr, hantek_t* p__root = nullptr);
+        channel_t(kaitai::kstream* p__io, hantek_t::header_t* p__parent = nullptr,
+            hantek_t* p__root = nullptr);
 
     private:
         void _read();
@@ -126,8 +128,8 @@ public:
     class footer_t : public kaitai::kstruct {
 
     public:
-
-        footer_t(kaitai::kstream* p__io, hantek_t* p__parent = nullptr, hantek_t* p__root = nullptr);
+        footer_t(kaitai::kstream* p__io, hantek_t* p__parent = nullptr,
+            hantek_t* p__root = nullptr);
 
     private:
         void _read();

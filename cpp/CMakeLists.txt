@@ -37,7 +37,7 @@ set_property(TARGET ${TEST_BINARY} PROPERTY CXX_STANDARD 17)
 # CPM to manage deps
 include(cmake/CPM.cmake)
 
-# Add Kaitai Struct and link
+# Add build dependecies
 CPMAddPackage(
   NAME kaitai_struct_cpp_stl_runtime
   GITHUB_REPOSITORY kaitai-io/kaitai_struct_cpp_stl_runtime
@@ -49,11 +49,12 @@ CPMAddPackage("gh:p-ranav/argparse@3.0")
 CPMAddPackage("gh:agauniyal/rang@3.2")
 CPMAddPackage("gh:fmtlib/fmt#10.2.1")
 CPMAddPackage("gh:/doctest/doctest@2.4.11")
+CPMAddPackage("gh:TheLartians/Format.cmake@1.8.0")
 target_link_libraries(${BINARY} kaitai_struct_cpp_stl_runtime argparse rang fmt doctest)
 target_link_libraries(${TEST_BINARY} kaitai_struct_cpp_stl_runtime argparse rang fmt doctest)
 
 # Store the version number in "src/version.cpp"
-set(VERSION "const char* VERSION=\"${CMAKE_PROJECT_VERSION}\";")
+set(VERSION "const char* VERSION = \"${CMAKE_PROJECT_VERSION}\";")
 set(VERSION_FILE "${SRC}/version.cpp")
 if(EXISTS ${VERSION_FILE})
     file(READ ${VERSION_FILE} VERSION_)

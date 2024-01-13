@@ -2,8 +2,8 @@
 
 #include <math.h>
 
-#include <fmt/core.h>
 #include <doctest/doctest.h>
+#include <fmt/core.h>
 
 const std::string LARGE_UNITS[6] = { "", "K", "M", "G", "T", "P" };
 const std::string SMALL_UNITS[6] = { "", "m", "u", "n", "p", "f" };
@@ -56,7 +56,8 @@ std::string format_number(double v, std::string units)
     return format_small_number(v, units);
 }
 
-TEST_CASE("testing format_number") {
+TEST_CASE("testing format_number")
+{
     CHECK(format_number(10000000000) == "10G");
     CHECK(format_number(1000000000) == "1G");
     CHECK(format_number(100000000) == "100M");
