@@ -97,10 +97,10 @@ Hantek::next()
     auto d4 = h->data4();
 
     if (idx < d1->size() || idx < d2->size() || idx < d3->size() || idx < d4->size()) {
-        auto ch1 = get_data(idx, h->header()->channel1(), h->data1());
-        auto ch2 = get_data(idx, h->header()->channel2(), h->data2());
-        auto ch3 = get_data(idx, h->header()->channel3(), h->data3());
-        auto ch4 = get_data(idx, h->header()->channel4(), h->data4());
+        auto ch1 = get_data(idx, h->header()->channel1(), d1);
+        auto ch2 = get_data(idx, h->header()->channel2(), d2);
+        auto ch3 = get_data(idx, h->header()->channel3(), d3);
+        auto ch4 = get_data(idx, h->header()->channel4(), d4);
 
         idx++;
 
