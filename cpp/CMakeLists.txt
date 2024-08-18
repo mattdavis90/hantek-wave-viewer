@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
 
 # Main executable
-project(HantekWavefile VERSION 0.1.1)
+project(HantekWavefile VERSION 0.1.2)
 
 set(BINARY "hantek")
 set(SRC "${PROJECT_SOURCE_DIR}/src")
@@ -45,11 +45,11 @@ CPMAddPackage(
   VERSION 0.10.0
   OPTIONS "BUILD_TESTS OFF"
 )
-CPMAddPackage("gh:p-ranav/argparse@3.0")
+CPMAddPackage("gh:p-ranav/argparse@3.1")
 CPMAddPackage("gh:agauniyal/rang@3.2")
-CPMAddPackage("gh:fmtlib/fmt#10.2.1")
-CPMAddPackage("gh:/doctest/doctest@2.4.11")
-CPMAddPackage("gh:TheLartians/Format.cmake@1.8.0")
+CPMAddPackage("gh:fmtlib/fmt#11.0.2")
+CPMAddPackage("gh:doctest/doctest@2.4.11")
+CPMAddPackage("gh:TheLartians/Format.cmake@1.8.1")
 target_link_libraries(${BINARY} kaitai_struct_cpp_stl_runtime argparse rang fmt doctest)
 target_link_libraries(${TEST_BINARY} kaitai_struct_cpp_stl_runtime argparse rang fmt doctest)
 
