@@ -3,8 +3,7 @@
 
 #include <math.h>
 
-#include <fmt/core.h>
-#include <rang.hpp>
+#include <fmt/color.h>
 
 Hantek::Hantek(const std::string filename)
 {
@@ -31,7 +30,7 @@ void Hantek::print(std::ostream& os)
     print_channel(os, 3, h->header()->channel3());
     print_channel(os, 4, h->header()->channel4());
 
-    os << rang::fg::magenta << "Data:" << rang::style::reset << "\n";
+    os << fmt::format(fmt::fg(fmt::terminal_color::magenta), "Data:") << "\n";
     os << "\tChannel 1: " << format_number(h->data1()->size()) << "\n";
     os << "\tChannel 2: " << format_number(h->data2()->size()) << "\n";
     os << "\tChannel 3: " << format_number(h->data3()->size()) << "\n";
@@ -41,7 +40,7 @@ void Hantek::print(std::ostream& os)
 
 void Hantek::print_header(std::ostream& os)
 {
-    os << rang::fg::magenta << "Common:" << rang::style::reset << "\n";
+    os << fmt::format(fmt::fg(fmt::terminal_color::magenta), "Common:") << "\n";
     os << "\tVersion: " << h->header()->version() << "\n";
     os << "\tAcquisition Mode: "
        << ACQUISITION_MODE[h->header()->channel1()->acquisition_mode()] << " ["
@@ -64,7 +63,7 @@ void Hantek::print_header(std::ostream& os)
 
 void Hantek::print_channel(std::ostream& os, int n, const hantek_t::channel_t* ch)
 {
-    os << rang::fg::magenta << "Channel " << n << ": " << rang::style::reset << "\n";
+    os << fmt::format(fmt::fg(fmt::terminal_color::magenta), "Channel {}: ", n) << "\n";
     if (ch->enabled()) {
         auto volts_per_div = VOLTS_PER_DIV[ch->volts_per_div()];
         auto volts_per_div_str

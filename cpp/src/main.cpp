@@ -3,7 +3,7 @@
 #include "version.hpp"
 
 #include <argparse/argparse.hpp>
-#include <rang.hpp>
+#include <fmt/color.h>
 
 int main(int argc, char* argv[])
 {
@@ -28,8 +28,9 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    std::cout << rang::fg::green << "Hantek Wave Viewer v" << VERSION << "\n"
-              << rang::style::reset << std::endl;
+    std::cout << fmt::format(
+        fmt::fg(fmt::terminal_color::green), "Hantek Wave Viewer v{}", VERSION)
+              << "\n\n";
 
     try {
         if (program.is_subcommand_used("info")) {
